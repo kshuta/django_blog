@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}投稿一覧 | {{ block.super}} {% endblock %}
+{% block description %}マイブログです。プログラミング学習の経過をこちらに記します{%endblock%}
+
+
+
+
+
+{% block content %}
+<div class="container main-box">
+	<div class="row">
+		<div class="col-md-8">
+			{% include "blog/snippets/main_post_list.html" %}
+		</div>
+		<aside calss="col-md-4">
+			{% include "blog/snippets/sidebar.html" %}
+		</aside>
+	</div>
+</div>
+
+{% endblock %}
