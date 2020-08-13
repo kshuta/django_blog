@@ -1,3 +1,16 @@
 .main-box {
 	margin: 30px auto;
 }
+
+
+
+/* main_post_list css */
+.card {
+	height: 22rem;
+}
+
+.main-post-img {
+	object-fit: contain;
+	height: 15rem;
+
+}

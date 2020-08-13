@@ -26,7 +26,7 @@ class Tag(models.Model):
 class Post(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.PROTECT)
 	tags = models.ManyToManyField(Tag, blank=True)
-	title = models.CharField(max_length=255)
+	title = models.CharField(max_length=23)
 	content = models.TextField()
 	description = models.TextField(blank=True)
 	image = models.ImageField(
