@@ -14,3 +14,40 @@
 	height: 15rem;
 
 }
+
+
+
+/* post_detail.html */
+.post-detail {
+	background-color: #f6f6f4;
+}
+
+.content-box {
+	margin: 0 auto;
+	width: 600px;
+	background-color: #fff;
+	padding: 30px 50px;
+}
+
+.post-content {
+	line-height: 1.8;
+}
+
+.post-content h3 {
+	margin: 15px 0;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #000;
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+	.content-box {
+		width: 350px;
+	}
+}
+
+
+
+
