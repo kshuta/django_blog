@@ -1,18 +1,21 @@
-
 {% load static %}
 
+<div class="row">
 {% for post in posts %}
-<a href="{% url 'blog:post_detail' post.id %}">
-	<div class="card">
-		{%if post.image %}
-			<img src="{{ post.image.url }}" alt="{{ post.title }}">
-		{% else %}
-			<img src="{% static 'img/unnamed.png'%}">
-		{% endif %}
-		<div class="card-body">
-			<h5 class="card-title">{{ post.title }}</h5>
-			<p class="card-text"> {{ post.content }}</p>
+<div class="col-md-6">
+	<a href="{% url 'blog:post_detail' post.id %}">
+		<div class="card">
+			{%if post.image %}
+				<img src="{{ post.image.url }}" alt="{{ post.title }}" class="main-post-img">
+			{% else %}
+				<img src="{% static 'img/unnamed.png'%}" class="main-post-img">
+			{% endif %}
+			<div class="card-body">
+				<h5 class="card-title">{{ post.title|truncatechars:24 }}</h5>
+				<p class="card-text"> {{ post.description|truncatechars:30 }}</p>
+			</div>
 		</div>
-	</div>
-</a>
+	</a>
+</div>
 {%endfor%}
+</div>
