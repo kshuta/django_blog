@@ -11,8 +11,8 @@
 				<img src="{% static 'img/unnamed.png'%}" class="main-post-img">
 			{% endif %}
 			<div class="card-body">
-				<h5 class="card-title">{{ post.title }}</h5>
-				<p class="card-text"> {{ post.description }}</p>
+				<h5 class="card-title">{{ post.title|truncatechars:24 }}</h5>
+				<p class="card-text"> {{ post.description|truncatechars:30 }}</p>
 			</div>
 		</div>
 	</a>
