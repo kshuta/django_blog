@@ -7,16 +7,31 @@
 {% block content %}
 
 <h1>「{{ category.name }}」の投稿一覧</h1>
-<ul>
-  {% for post in object_list %}
-  {% if user.is_authenticated or post.is_public %}
-  <li>{% if not post.is_public %}[下書き] {% endif %}<a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a></li>
-  {% else %}
-  <li>投稿はありません。</li>
-  {% endif %}
+<div class="row category-post-view">
+  {% for post in page_obj %}
+  <div class="col-md-6 col-lg-4">
+		<a href="{% url 'blog:post_detail' post.id %}">
+			<div class="card shadow bg-white rounded">
+				{%if post.image %}
+					<img src="{{ post.image.url }}" alt="{{ post.title }}" class="main-post-img">
+				{% else %}
+					<img src="{% static 'img/unnamed.png'%}" class="main-post-img">
+				{% endif %}
+				<div class="card-body">
+					<h5 class="card-title">	{% if user.is_authenticated or post.is_public %}
+  {% if not post.is_public %}[下書き] {% endif %}{{ post.title }}
+  {% endif %}</h5>
+					<p class="card-text"> {{ post.description|truncatechars:30 }}</p>
+				</div>
+			</div>
+		</a>
+	</div>
   {% empty %}
-  <li>まだ投稿はありません。</li>
+  <h1>No Post</h1>
   {% endfor %}
-</ul>
+ </div>
 
 {% endblock %}
+
+
+

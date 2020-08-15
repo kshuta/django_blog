@@ -1,17 +1,20 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 
-{% block title %}投稿一覧 | {{ block.super}} {% endblock %}
-{% block description %}マイブログです。プログラミング学習の経過をこちらに記します{%endblock%}
+{% block title %} {% if query %}{{query}}{% endif %} | {{ block.super}} {% endblock %}
+{% block description %}{% if query %}{{query}}の検索結果です{% else %}投稿一覧です{% endif %}{%endblock%}
 
 
 
 
 
 {% block content %}
+
 <div class="container main-box">
 	<div class="row">
 		<div class="col-md-8">
+			<h1>「{% if query %}{{query}}{% endif %}」の検索結果</h1>
+			<p>{{ page_obj.start_index }}-{{ page_obj.end_index}}件 ({{ paginator.count }}件)</p>
 			{% include "blog/snippets/main_post_list.html" %}
 			{% include "blog/snippets/pagination.html" %}
 		</div>

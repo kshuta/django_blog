@@ -20,12 +20,38 @@ class PostDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context["photos"] = ContentImage.objects.filter(post=self.object.id)
-		print(context["photos"])
 		return context
 
 class IndexView(ListView):
+	paginate_by = 10
 	model = Post 
 	template_name = 'blog/index.html'
+
+class SearchPostView(ListView):
+	paginate_by = 10
+	model = Post
+	template_name = "blog/search_post.html"
+
+	def get_queryset(self):
+		print("hello")
+		query = self.request.GET.get('q')
+		lookups = (
+			Q(title__icontains=query) |
+			Q(content__icontains=query) |
+			Q(category__name__icontains=query) |
+			Q(tags__name__icontains=query)
+		)
+		if query:
+			qs = Post.objects.filter(lookups).distinct()
+			return qs
+		qs=super().get_queryset.filter()
+		return qs
+
+	def get_context_data(self, **kwargs):
+		context=super().get_context_data(**kwargs)
+		query = self.request.GET.get('q')
+		context['query'] = query
+		return context 
 
 class CategoryListView(ListView):
 	queryset = Category.objects.annotate(
@@ -36,6 +62,7 @@ class TagListView(ListView):
 
 
 class CategoryPostView(ListView):
+	paginate_by = 10
 	model = Post
 	template_name = 'blog/category_post.html'
 
@@ -48,10 +75,10 @@ class CategoryPostView(ListView):
 	def get_context_data(self,**kwargs):
 		context = super().get_context_data(**kwargs)
 		context['category'] = self.category
-		print(context)
 		return context 
 
 class TagPostView(ListView):
+	paginate_by = 10
 	model = Post
 	template_name = 'blog/tag_post.html'
 
@@ -64,7 +91,9 @@ class TagPostView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['tag'] = self.tag 
-		print(context)
 		return context
+
+
+
 
 

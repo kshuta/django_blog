@@ -20,7 +20,7 @@
   <ul class="list-group list-group-flush">
     {% for tag in tags|slice:":5" %}
     <li class="list-group-item d-flex justify-content-between align-items-center">
-      <a href="{% url 'blog:tag_post' tag.slug %}" class="card-link">{{ tag.name }}</a>
+      <a href="{% url 'blog:tag_post' tag.slug %}" class="card-link">{{ tag.name|truncatechars:12 }}</a>
       <span class="badge badge-primary badge-pill">{{ tag.num_posts }}</span>
     </li>
     {% endfor %}
