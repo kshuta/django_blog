@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'not-so-secret-key')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +30,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', default=1))
 
 ALLOWED_HOSTS = []
 
