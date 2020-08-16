@@ -1,5 +1,4 @@
 FROM python:3
-COPY .bashrc /
 RUN apt-get update && apt-get -y install \
 	vim 
 ENV PYTHONUNBUFFERED 1
