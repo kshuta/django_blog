@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'markdownx',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Markdownx extensions
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra',
+    'markdown.extensions.toc',
+]
 
 
 # Static files (CSS, JavaScript, Images)
