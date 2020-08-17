@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load static %}
+{% load app %}
 
 {% block title %}投稿詳細 | {{ block.super }} {% endblock %}
 {% block description %} {{ object.title}}の詳細画面です {% endblock %}
@@ -18,7 +19,7 @@
 		{% endfor %}
 		<hr>
 		<div class="post-content">
-			{{ object.content|safe }}
+			{{ object.content|markdown_to_html }}
 			{% for photo in photos %}
 			<img src="{{ photo.content_image.url }}" width="300" height="200">
 		</div>

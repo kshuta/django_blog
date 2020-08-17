@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Count
 from django.utils import timezone
+from markdownx.models import MarkdownxField
 # Create your models here.
 
 
@@ -27,7 +28,7 @@ class Post(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.PROTECT)
 	tags = models.ManyToManyField(Tag, blank=True)
 	title = models.CharField(max_length=255)
-	content = models.TextField()
+	content = MarkdownxField('content', help_text="マークダウンで記述")
 	description = models.TextField(blank=True)
 	image = models.ImageField(
 		upload_to='post_images/', null=True, blank=True
@@ -47,13 +48,6 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.title
-
-class ContentImage(models.Model):
-	post = models.ForeignKey(Post, on_delete=models.PROTECT, related_name="content_images")
-	content_image = models.ImageField(upload_to='post_content_images/')
-
-	def __str__(self):
-		return self.content_image.url
 
 
 

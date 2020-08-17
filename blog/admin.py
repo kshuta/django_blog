@@ -1,15 +1,7 @@
 from django.contrib import admin
-from blog.models import Category, Tag, Post, ContentImage
-
-class ContentImageInLine(admin.TabularInline):
-	model = ContentImage
-	extra = 0
-
-class PostAdmin(admin.ModelAdmin):
-	inlines = [
-	ContentImageInLine,
-]
+from blog.models import Category, Tag, Post
+from markdownx.admin import MarkdownxModelAdmin
 
 admin.site.register(Category)
 admin.site.register(Tag)
-admin.site.register(Post, PostAdmin)
+admin.site.register(Post, MarkdownxModelAdmin)
