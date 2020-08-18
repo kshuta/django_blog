@@ -11,4 +11,4 @@ COPY . /code/
 
 WORKDIR /code/
 
-CMD gunicorn dbsite.wsgi --bind=0.0.0.0:8000
+CMD gunicorn dbsite.wsgi --bind=0.0.0.0:8080

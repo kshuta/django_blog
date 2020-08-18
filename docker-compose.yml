@@ -12,6 +12,7 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+
   web:
     build: .
     ports: 
@@ -20,3 +21,7 @@ services:
       - .:/code/
     tty: true
     stdin_open: true
+    depends_on:
+      - db
+    links:
+      - db
