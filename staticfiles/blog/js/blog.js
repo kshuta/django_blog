@@ -1,1 +1,0 @@
-$(".card-title").fitText(0.38)
